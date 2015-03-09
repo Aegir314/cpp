@@ -1,22 +1,44 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+// dialog.h
 
-#include <QMainWindow>
+#ifndef DIALOG_H
+#define DIALOG_H
+
+#include <QDialog>
+#include <QProcess>
+#include <QFile>
+#include <QTextEdit>
 
 namespace Ui {
-class MainWindow;
+class Dialog;
 }
 
-class MainWindow : public QMainWindow
+class Dialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit Dialog(QWidget *parent = 0);
+    ~Dialog();
+
+public slots:
+
+public:
+
+private slots:
+     void on_startButton_clicked();
+     void readyReadStandardOutput();
+     void processStarted();
+     void encodingFinished();
+     void on_fileOpenButton_clicked();
+     void on_playInputButton_clicked();
+     void on_playOutputButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::Dialog *ui;
+    QProcess *mTranscodingProcess;
+    QProcess *mInputPlayProcess;
+    QProcess *mOutputPlayProcess;
+    QString mOutputString;
 };
 
-#endif // MAINWINDOW_H
+#endif // DIALOG_H
