@@ -1,5 +1,9 @@
 #pragma once
-
+/*
+TODO:
+itemi (nova klasa)
+Inventory (nova klasa)
+*/
 class Player {
 public:
 	Player();
